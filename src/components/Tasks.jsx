@@ -5,8 +5,14 @@ function Tasks(props) {
   const navigate = useNavigate();
 
   function onSeeDetailsClick(task){
-    navigate(`/task?title=${task.title}&description=${task.description}`);
+    const query = new URLSearchParams();
+
+    query.set("title", task.title);
+    query.set("description", task.description);
+
+    navigate(`/task?${query.toString()}`);
   }
+
   return (
     <ul className="space-y-4 bg-[#444654] p-6 rounded-md mt-7 shadow">
       {props.tasks.map((task) => (

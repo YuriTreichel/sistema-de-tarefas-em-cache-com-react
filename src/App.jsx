@@ -1,6 +1,6 @@
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 } from "uuid";
 
 function App() {
@@ -30,6 +30,10 @@ function App() {
       isCompleted: false,
     },
   ]);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   function onTaskClick(taskId){
     const newTasks = tasks.map(task => {
